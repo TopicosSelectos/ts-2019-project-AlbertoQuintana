@@ -1,0 +1,84 @@
+---
+title: "ExamenFinal"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+library(tidyverse)
+library(Hmisc)
+
+#Exercise Number 1
+
+months_number <- c(1:12)
+months_names <- c('January', 'Februry', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Octuber', 'November', 'December')
+months <- matrix(months_names, byrow = TRUE, dimnames = list(months_number))
+view <- c(months[6:8])
+view
+
+#Displays [1] "June"   "July"   "August"
+
+
+#Excercise Number 2
+
+numbers <- matrix(1:15, ncol = 3, nrow = 5, byrow = TRUE)
+view(numbers)
+
+#Excercise Number 3
+
+factor <- c("XXL", "XXL", "XXL", "XL", "L", "M", "M", "S", "S", "S")
+
+
+#Excercise Number 4
+
+courses <- c('Fundamentals of Software Engineering','Data Structure','Programming','Distributed Systems','Information Security')
+marks <- c(8.0, 7.2, 7.7, 9.1, 8.9)
+professors <- c('Lucero Munoz', 'Francisco Lopez', 'Vicente Garcia','Alan Ponce', 'Patricia Hernandez')
+
+school_data <- matrix(c(courses, professors, marks), ncol = 3, nrow = 5, byrow = FALSE)
+school_data_frame <- data.frame(school_data)
+View(school_data_frame)
+
+#Excercise Number 5 
+
+itu <- read.csv("data/ITU_WB.csv")
+view(itu)
+
+#In this data set we can find 11 variables, the first column is called num wich is a numeric identyfier for the dataset, then 'Economy' wich is the name of the country, 'Region' the continent it belongs to, 'income.group' refers to the average class of their population, 'year' is the year the data was taken, ''internet.value' is the price of the internet in that specific time, 'Total.population' is the amount of people living in that country at that time, 'GDP' is the worth of that nation at the time, 'Life.Expectancy.Years' is the average of years that a pewrson lives in that country, 'GDP.per.capita.income' represents the average income of a person in that country and 'Fertility.births.per.woman' represents the average of births per woman during the year
+
+
+#Excercise Number 6
+
+observations_mexico <- itu[itu$Economy == 'Mexico', ]
+observations_mexico
+
+#Excercise Number 7 
+
+itu_per_year <- itu[order(itu$year), ] 
+itu_by_year <- itu_per_year[order(!is.na(itu$Income.group)), ]
+medianValue <- mean(itu_by_year$Internet.value)
+
+
